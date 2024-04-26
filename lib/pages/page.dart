@@ -9,6 +9,7 @@ class GamePage extends StatelessWidget {
 
   const GamePage(this.title, this.story, this.buttons, {super.key, this.icon});
 
+  //TODO: design
   List<Widget> createButtons(){
     //ERROR if more than 4 buttons
     switch (buttons.length) {
@@ -25,6 +26,9 @@ class GamePage extends StatelessWidget {
       default: throw "Invalid length";
     }
   }
+  List<Widget> body(BuildContext context) {
+    return [SingleChildScrollView(child: Text(story))];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class GamePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
           if (icon != null) icon!,
-          Text(story), //TODO: scrollable
+          ... body(context),
           ... createButtons() //add buttons to Column
 
         ],),
@@ -51,7 +55,7 @@ class GamePage extends StatelessWidget {
 
 class Button extends StatelessWidget {
   final String text;
-  final String page;
+  final MaterialPageRoute page;
   final Function? action;
 
   const Button(this.text, this.page, {super.key, this.action});
@@ -59,7 +63,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(onPressed: () {
-      Navigator.pushReplacementNamed(context, page);
+      Navigator.pushReplacement(context, page);
       if (action != null) action!();
       },
       child: Text(text));

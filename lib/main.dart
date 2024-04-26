@@ -16,96 +16,46 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         useMaterial3: true,
       ),
-      home: const GamePage("Ontkom het Noodlot", "Lorum ...", [Button("start blasdjnlk sldfh oqweiuh a", "/intro"),Button("start2", "/intro"),Button("start3", "/intro"),Button("start4", "/intro")]),
-      initialRoute: "/",
+      home: homePage,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomePage extends GamePage {
+   HomePage({super.key}) : super(
+    "Ontkom het Noodlot",
+    "Eindelijk schrijf ik je weer omdat er grote dingen staan te gebeuren en wel door toedoen van mijnheer Van Schoonbeke.",
+    [
+      Button("Start", MaterialPageRoute(builder: (BuildContext context) => inleiding)),
+      Button("Inleiding /Toelichting (Spoiler Alert!) ", MaterialPageRoute(builder: (BuildContext context) => HomePage())),
+      Button("Eindes", MaterialPageRoute(builder: (BuildContext context) => HomePage()))
+    ]
+  );
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+   @override
+   List<Widget> body(BuildContext context){
+     return [
+       Text(title, style: Theme.of(context).textTheme.titleLarge,),
+       Text(story, style: Theme.of(context).textTheme.titleMedium,)
+     ];
+   }
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
 }
+GamePage homePage = HomePage();
+GamePage inleiding = GamePage(
+    "Inleiding",
+    "Jouw naam is Frans Laarmans. Je leeft rond 1930 in Antwerpen samen met je vrouw, van wie je veel houdt en je kinderen, van wie je ook veel houdt, hoewel ze soms toch best vervelend kunnen zijn. Om jouw familie te onderhouden werk je als klerk bij de General Marine and Shipbuilding Company.", //TODO: italic
+    [
+      Button("Verhaal Starten", MaterialPageRoute(builder: (BuildContext context) => expositie1))
+    ]
+);
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+GamePage expositie1 = GamePage(
+    "Expositie 1",
+    "Jouw moeder is overleden; een nare geschiedenis natuurlijk. Je zat een beetje ongemakkelijk bij haar sterfbed samen met je zussen en jouw broer, die dokter is. Een paar dagen later was de begrafenis, die zoals gebruikelijk verliep, als je wel kunt spreken van een normale begrafenis. Er waren veel mensen aanwezig, waaronder een klant en vriend van jouw broer, die Van Schoonbeke heette. Hij nodigt jou uit om een keer bij hem op bezoek te komen. ",
+    [
+      Button('“Dat zal ik doen”', MaterialPageRoute(builder: (BuildContext context) => expositie1)),
+      Button('“Nee sorry, ik heb het heel druk”', MaterialPageRoute(builder: (BuildContext context) => expositie1)),
+      Button('Ik zeg wel “ja”, maar ik kom niet', MaterialPageRoute(builder: (BuildContext context) => expositie1))
+    ]
+);

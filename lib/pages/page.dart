@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noodlot_spel/main.dart';
 
 class GamePage extends StatelessWidget {
   final String title;
@@ -30,13 +31,21 @@ class GamePage extends StatelessWidget {
     return [SingleChildScrollView(child: Text(story))];
   }
 
+  List<Widget>? appBarButtons(BuildContext context) {
+    return [
+      ElevatedButton(
+          onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => homePage)),
+          child: const Text("Terug naar start"))
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    buttons.sublist(1);
     return Scaffold(
         appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
+        actions: appBarButtons(context),
     ),
       body: Center(
         child: Column(
@@ -55,15 +64,15 @@ class GamePage extends StatelessWidget {
 
 class Button extends StatelessWidget {
   final String text;
-  final MaterialPageRoute page;
+  final Widget Function(BuildContext) pageBuilder;
   final Function? action;
 
-  const Button(this.text, this.page, {super.key, this.action});
+  const Button(this.text, this.pageBuilder, {super.key, this.action});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(onPressed: () {
-      Navigator.pushReplacement(context, page);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: pageBuilder));
       if (action != null) action!();
       },
       child: Text(text));

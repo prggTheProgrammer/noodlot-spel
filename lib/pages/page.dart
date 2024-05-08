@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:noodlot_spel/main.dart';
+
+import 'menu_and_extra.dart';
 
 class GamePage extends StatelessWidget {
   final String title;
@@ -28,7 +29,10 @@ class GamePage extends StatelessWidget {
     }
   }
   List<Widget> body(BuildContext context) {
-    return [SingleChildScrollView(child: Text(story))];
+    return [SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10),
+        child: Text(story),
+    )];
   }
 
   List<Widget>? appBarButtons(BuildContext context) {

@@ -20,3 +20,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//State variables
+class GameState {
+  static bool certificaat = true;
+}

@@ -18,8 +18,8 @@ GamePage expositie2A = GamePage(
     "Je was op bezoek bij van Schoonbeke. Geld heeft hij in overvloed en al zijn vrienden hebben óók geld. Jij voelde je niet op je gemak, want jij bent niet rijk. Jouw broer is ook niet rijk, maar omdat hij een dokter is, heeft hij alsnog aanzien. Maar jij hebt als nederige klerk geen aanzien. Je hebt nauwelijks iets gezegd gedurende het hele gesprek, zodat niemand daarachter zou komen. Van Schoonbeke wil jou helpen meer aanzien te krijgen, want in zijn milieu heeft mijnheer Van Schoonbeke eigenlijk het recht niet er vrienden zonder geld of titels op na te houden. Daarom biedt hij jou de mogelijkheid aan om vertegenwoordiger van België te worden van de Nederlandse kaasfirma Hornstra. Je bespreekt het met je vrouw. Ze vindt het goed, maar ze vindt wel dat je niet meteen je baan bij de General Marine and Shipbuilding Company moet opgeven.",
     [
       Button("Ik geef meteen mijn baan op en stuur een brief naar Hornstra",
-            (context) => intrige2,
-            action: () => GameState.certificaat = false),
+            (context) => intrige2B,
+            action: () => GameState.current.certificaat = false),
       Button("Ik doe wat mijn vrouw zegt en stuur gewoon de brief naar Hornstra", (context) => intrige1A),
       Button("Ik vind mijn baan wel goed zo, ik schrijf geen brief aan Hornstra", (context) => intrige1B)
     ]

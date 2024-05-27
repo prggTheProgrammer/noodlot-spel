@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noodlot_spel/main.dart';
 
 import 'menu_and_extra.dart';
 
@@ -6,7 +7,7 @@ class GamePage extends StatelessWidget {
   final String title;
   final Image? icon;
   final String story;
-  final List<Button> buttons;
+  final List<Widget> buttons;
 
 
   const GamePage(this.title, this.story, this.buttons, {super.key, this.icon});
@@ -16,7 +17,7 @@ class GamePage extends StatelessWidget {
     //ERROR if more than 4 buttons
     switch (buttons.length) {
       case 0: return [];
-      case 1: return [Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [buttons[0]])];
+      case 1: return [buttons[0]];
       case 2: return [Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2))];
       case 3:
       case 4:
@@ -28,6 +29,7 @@ class GamePage extends StatelessWidget {
       default: throw "Invalid length";
     }
   }
+  //TODO: text scrolling: text doesn't fit in WIP
   List<Widget> body(BuildContext context) {
     return [SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10),
@@ -38,7 +40,10 @@ class GamePage extends StatelessWidget {
   List<Widget>? appBarButtons(BuildContext context) {
     return [
       ElevatedButton(
-          onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => homePage)),
+          onPressed: () {
+            GameState.reset();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => homePage));
+          },
           child: const Text("Terug naar start"))
     ];
   }
@@ -75,10 +80,118 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: pageBuilder));
-      if (action != null) action!();
-      },
-      child: Text(text));
+    return SizedBox(
+      width: 200,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: pageBuilder));
+          if (action != null) action!();
+          print("Gamestate {certificaat: ${GameState.current.certificaat}, naam: ${GameState.current.naam}}");
+        },
+        child: Text(text))
+    );
   }
 }
+
+// used at intrige 2(A/B) to choose name (Gafpa)
+//Not a GamePage, because it needs to have state
+// class NameChoosingPage extends StatefulWidget {
+//   const NameChoosingPage({super.key});
+//
+//   @override
+//   State<StatefulWidget> createState() => _NameChoosingPageState();
+//
+// }
+//
+// class _NameChoosingPageState extends State<NameChoosingPage>{
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+//         title: Text(title),
+//         actions: appBarButtons(context),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             if (icon != null) icon!,
+//             ... body(context),
+//             ... createButtons() //add buttons to Column
+//
+//           ],),
+//       ),
+//     );
+//   }
+// }
+
+class NameField extends StatefulWidget {
+  final String text;
+  final Widget Function(BuildContext) pageBuilder;
+
+  const NameField(this.text, this.pageBuilder, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _NameFieldState();
+
+}
+
+class _NameFieldState extends State<NameField>{
+  final TextEditingController _controller = TextEditingController(text: "Gafpa");
+  //String text = "Gafpa";
+  String? errorText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        width: 300,
+        child: TextField(
+          controller: _controller,
+          maxLength: 20,
+          decoration: InputDecoration(
+              hintText: "Naam van de onderneming",
+              errorText: errorText
+          ),
+
+          // onChanged: (String value) {
+          //   setState(() {
+          //     text = value;
+          //     if (text.length == 0){
+          //       errorText = "Vul een naam in"
+          //     }
+          //   });
+          // },
+        )
+      ),
+      ElevatedButton(onPressed: () {
+        String text = _controller.text;
+        if (text.isEmpty) {
+          return setState(() {
+            errorText = "Vul een naam in";
+          });
+        }
+        GameState.current.naam = text;
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: widget.pageBuilder));
+      },
+          child: Text(widget.text))
+    ],);
+  }
+}
+// class NaamKiezenPage extends GamePage {
+//
+//   NaamKiezenPage(String title, String story, {super.key}) : super(
+//       title,
+//       story,
+//       [
+//         Button("Naam kiezen", (context) => intrige3)
+//       ]);
+//
+//   @override
+//   List<Widget> createButtons() {
+//     return [
+//       TextField()
+//     ];
+//   }
+// }

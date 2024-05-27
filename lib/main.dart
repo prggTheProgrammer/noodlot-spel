@@ -23,5 +23,12 @@ class MyApp extends StatelessWidget {
 
 //State variables
 class GameState {
-  static bool certificaat = true;
+  static GameState current = GameState._();
+  bool certificaat = true;
+  String naam = "";
+
+  GameState._();
+  static void reset(){
+    GameState.current = GameState._();
+  }
 }

@@ -5,12 +5,12 @@ import 'eindes.dart';
 
 // Besluiten of je naar normale einde gaat of dat je nog een keuze krijgt
 GamePage getEinde() {
-  return GameState.certificaat ? normaleEinde : peripetie;
+  return GameState.current.certificaat ? normaleEinde : peripetie;
 }
 
 //besluiten tussen de twee verschillende speciale eindes.
 GamePage getSpecialeEinde() {
-  return GameState.certificaat ? specialeEinde1 : specialeEinde2;
+  return GameState.current.certificaat ? specialeEinde1 : specialeEinde2;
 }
 
 // Agenten doen niets en vergadering als president, door met verhaal of meteen stoppen

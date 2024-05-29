@@ -33,7 +33,14 @@ class GamePage extends StatelessWidget {
   List<Widget> body(BuildContext context) {
     return [SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10),
-        child: Text(story),
+        child: Text(story.replaceAll("{naam}", GameState.current.naam).replaceAllMapped(RegExp(r'\{!certificaat(.*)\}'), (match) {
+          if (GameState.current.certificaat){
+            return "";
+          }
+          else {
+            return match.group(1)!;
+          }
+        })),
     )];
   }
 
@@ -88,7 +95,7 @@ class Button extends StatelessWidget {
           if (action != null) action!();
           print("Gamestate {certificaat: ${GameState.current.certificaat}, naam: ${GameState.current.naam}}");
         },
-        child: Text(text))
+        child: Text(text.replaceAll("{naam}", GameState.current.naam)))
     );
   }
 }

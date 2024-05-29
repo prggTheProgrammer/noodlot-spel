@@ -95,37 +95,6 @@ class Button extends StatelessWidget {
 
 // used at intrige 2(A/B) to choose name (Gafpa)
 //Not a GamePage, because it needs to have state
-// class NameChoosingPage extends StatefulWidget {
-//   const NameChoosingPage({super.key});
-//
-//   @override
-//   State<StatefulWidget> createState() => _NameChoosingPageState();
-//
-// }
-//
-// class _NameChoosingPageState extends State<NameChoosingPage>{
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         title: Text(title),
-//         actions: appBarButtons(context),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: [
-//             if (icon != null) icon!,
-//             ... body(context),
-//             ... createButtons() //add buttons to Column
-//
-//           ],),
-//       ),
-//     );
-//   }
-// }
-
 class NameField extends StatefulWidget {
   final String text;
   final Widget Function(BuildContext) pageBuilder;
@@ -139,7 +108,6 @@ class NameField extends StatefulWidget {
 
 class _NameFieldState extends State<NameField>{
   final TextEditingController _controller = TextEditingController(text: "Gafpa");
-  //String text = "Gafpa";
   String? errorText;
 
   @override
@@ -155,14 +123,6 @@ class _NameFieldState extends State<NameField>{
               errorText: errorText
           ),
 
-          // onChanged: (String value) {
-          //   setState(() {
-          //     text = value;
-          //     if (text.length == 0){
-          //       errorText = "Vul een naam in"
-          //     }
-          //   });
-          // },
         )
       ),
       ElevatedButton(onPressed: () {
@@ -179,19 +139,3 @@ class _NameFieldState extends State<NameField>{
     ],);
   }
 }
-// class NaamKiezenPage extends GamePage {
-//
-//   NaamKiezenPage(String title, String story, {super.key}) : super(
-//       title,
-//       story,
-//       [
-//         Button("Naam kiezen", (context) => intrige3)
-//       ]);
-//
-//   @override
-//   List<Widget> createButtons() {
-//     return [
-//       TextField()
-//     ];
-//   }
-// }

@@ -34,10 +34,10 @@ GamePage intrige2B = GamePage(
 //door naar verhaal (climax)
 GamePage intrige3 = GamePage(
     "Intrige 3",
-    "story",
+    "Jouw kantoor begint al vorm te krijgen, je mist alleen nog maar een bureau. Bij de volgende kletspartij van Van Schoonbeke deel jij de nieuwe naam van je onderneming mee en je toont het brievenpapier van de ${GameState.current.naam}. De volgende morgen zijn de kazen aangekomen en je krijgt te horen dat ze in patentkelders worden opgeslagen totdat ze worden verkocht. Je neemt één kist als proef mee naar huis en je laat de vrienden van Van Schoonbeke het proeven en je merkt nu duidelijk dat jouw aanzien is gestegen. Jouw broer komt bij jou langs om de kaas te proeven en hij zegt dat je nu echt aan de slag moet gaan met het verkopen, maar jij moet eerst nog alles op orde hebben. Je hebt eindelijk een bureau kunnen vinden en je kunt nu aan de slag. Je moet alleen nog één ding bedenken: moet jij die kazen zelf gaan verkopen of is het beter om agenten in te huren, zodat jij je bezig kunt houden met de administratieve zaken?",
     [
-        Button("Ik doe het zelf wel", (context) => climax3B),
-        Button("Ik huur agenten in om het werk voor mij te doen", (context) => climax1)
+        Button("Ik ga wel zelf kaas verkopen", (context) => climax3B),
+        Button("Ik huur agenten in om alle kaas te verkopen", (context) => climax1)
     ]
 );
 

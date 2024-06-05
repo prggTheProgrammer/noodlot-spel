@@ -17,15 +17,14 @@ class HomePage extends GamePage {
   @override
   List<Widget> body(BuildContext context){
     return [
-      Text(title, style: Theme.of(context).textTheme.titleLarge,),
-      Text(story, style: Theme.of(context).textTheme.titleMedium,)
+      Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: Text(title, style: Theme.of(context).textTheme.titleLarge,)),
+      Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: Text(story, style: Theme.of(context).textTheme.titleMedium,))
     ];
   }
 
   @override
   List<Widget>? appBarButtons(BuildContext context) {
-    return null;
-    //because homepage has no back button
+    return null; //because homepage has no back button
   }
 
 }

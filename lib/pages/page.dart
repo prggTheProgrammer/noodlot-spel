@@ -12,7 +12,6 @@ class GamePage extends StatelessWidget {
 
   const GamePage(this.title, this.story, this.buttons, {super.key, this.icon});
 
-  //TODO: design
   List<Widget> createButtons(){
     //ERROR if more than 4 buttons
     switch (buttons.length) {
@@ -29,10 +28,9 @@ class GamePage extends StatelessWidget {
       default: throw "Invalid length";
     }
   }
-  //TODO: text scrolling: text doesn't fit in WIP
   List<Widget> body(BuildContext context) {
-    return [SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10),
+    return [Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Text(story.replaceAll("{naam}", GameState.current.naam).replaceAllMapped(RegExp(r'\{!certificaat(.*)\}'), (match) {
           if (GameState.current.certificaat){
             return "";
@@ -63,7 +61,7 @@ class GamePage extends StatelessWidget {
         title: Text(title),
         actions: appBarButtons(context),
     ),
-      body: Center(
+      body: Center(child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -72,7 +70,7 @@ class GamePage extends StatelessWidget {
           ... createButtons() //add buttons to Column
 
         ],),
-      ),
+      )),
     );
   }
 
@@ -87,7 +85,7 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),child: SizedBox(
       width: 200,
       child: ElevatedButton(
         onPressed: () {
@@ -96,7 +94,7 @@ class Button extends StatelessWidget {
           print("Gamestate {certificaat: ${GameState.current.certificaat}, naam: ${GameState.current.naam}}");
         },
         child: Text(text.replaceAll("{naam}", GameState.current.naam)))
-    );
+    ));
   }
 }
 

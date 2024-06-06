@@ -47,9 +47,9 @@ GamePage climax3B = GamePage(
 
 GamePage peripetie = GamePage(
     "Peripetie",
-    "story",
+    "Nadat je de kist met kazen hebt dichtgespijkerd, breng je het met een taxi terug naar de patentkelders. Je begint je nu af te vragen waarom je ooit hebt geprobeerd om handelaar te worden. Is het misschien omdat je geen nee wilde zeggen tegen van Schoonbeke? Maar wat nog erger is, is dat je nu ook niet meer terug kunt, omdat je al ontslag hebt genomen bij je oude baan. Had je maar naar je vrouw geluisterd. Zij was verstandig en had waarschijnlijk al meteen begrepen dat dit niets zou worden. Je hebt nu niets meer: geen aanzien, geen {naam} en geen baan. Hoe moet je nu voor je gezin zorgen? Wat zal jouw vrouw ervan vinden dat je niet naar haar advies hebt geluisterd. Terwijl je deze dingen overweegt, breekt de dag aan waarop Hornstra langskomt, maar wanneer hij aanbelt heb jij niet de moed om de deur open te doen. Hornstra gaat weer weg en jij blijft alleen achter. Wat moet je nu doen? Moet je naar je vrouw gaan? Maar wil ze jou nog wel zien? Of is het misschien toch beter om weg te gaan en nooit meer terug te komen.",
     [
-      Button("Naar vrouw", (context) => catharsis),
-      Button("Niet naar vrouw", (context) => slechteEinde)
+      Button("Ik heb niets meer te verliezen, ik ga troost zoeken bij mijn vrouw", (context) => catharsis),
+      Button("Ik ben een mislukte vader en echtgenoot, ik ga weg", (context) => slechteEinde)
     ]
 );

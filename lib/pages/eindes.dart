@@ -49,4 +49,4 @@ GamePage catharsis = EindePage("Catharsis","Jij blijf nog even staan en een grot
 GamePage specialeEinde1 = EindePage("Speciale Einde 1","","");
 GamePage specialeEinde2 = EindePage("Speciale Einde 2","","");
 GamePage goedeEinde = EindePage("Goede Einde","","");
-GamePage toBeTitled = EindePage("WIP","deze einde heeft naam: {naam}","");
+GamePage vernedering = EindePage("Vernedering","","");

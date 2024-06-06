@@ -44,9 +44,9 @@ GamePage intrige3 = GamePage(
 // op weg naar goede einde
 GamePage intrige1B = GamePage(
     "Intrige 1B",
-    "story",
+    "Hornstra is eigenlijk teleurgesteld dat jij het aanbod niet hebt aangenomen, omdat het vernederend is voor hem om met zo een laag iemand om te gaan. Maar je leven gaat door en jij gaat nu elke week op bezoek bij Van Schoonbeke, wat altijd een vernederende ervaring is. Van Schoonbeke heeft niet verteld dat jij een klerk bent en voor de gezelschap ben jij dus een niemand. Ze praten steeds over restaurants waar jij nooit bent geweest en over rijke families waar jij nooit van hebt gehoord. Zwijgen is dus het enige wat je kunt doen. Jouw baan bij de General Marine verloopt ook zoals altijd: je werkt hard, maar verdient niet veel en je kunt op elk moment vervangen worden door een andere klerk. Wanneer je een keer ziet hoe jouw vrouw met haar gewone zuinigheid de boter smeert en het brood snijdt, bedenk je dat zij de vrouw van een koopman had kunnen zijn, als jij het aanbod van Van Schoonbeke had aangenomen. De volgende dag nodigt Tuil, een vriend van jou op je werk, om samen met Erfurt en Bartherotte (twee andere collega’s) wat te gaan drinken. Maar jij moet dan eigenlijk naar Van Schoonbeke, waar je geen zin in hebt. Misschien is het tijd om toe te geven dat jij een klerk bent en niet past bij de kring van Van Schoonbeke. Aan de andere kant, wat zullen zij ervan vinden dat jij met zulke lage mensen omgaat. Was het misschien toch beter geweest om het aanbod aan te nemen?",
     [
-        Button("goede", (context) => goedeEinde),
-        Button("slechte", (context) => toBeTitled)
+        Button("Het is tijd dat ik het hele gezelschap van Van Schoonbeke naar de duivel zend!", (context) => goedeEinde),
+        Button("Ik zeg tegen Tuil dat ik niet kan komen (en misschien lukt het mij om in prestige te groeien)", (context) => vernedering)
     ]
 );

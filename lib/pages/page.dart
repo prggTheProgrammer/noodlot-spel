@@ -24,15 +24,15 @@ class GamePage extends StatelessWidget {
     switch (buttons.length) {
       case 0: return [];
       case 1: return [buttons[0]];
-      case 2: return [Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2))];
+      case 2: return [SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2)))];
       case 3:
       case 4:
       case 5:
       case 6:
       case 7:
         return[
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2),),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(2,buttons.length),),
+        SingleChildScrollView(scrollDirection: Axis.horizontal, child:Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2),)),
+        SingleChildScrollView(scrollDirection: Axis.horizontal, child:Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(2,buttons.length),)),
       ];
 
       default: throw "Invalid length";

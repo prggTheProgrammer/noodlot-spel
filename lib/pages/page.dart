@@ -3,6 +3,13 @@ import 'package:noodlot_spel/main.dart';
 
 import 'menu_and_extra.dart';
 
+//TODO: better structure for style and more decoration
+class Style {
+  static TextStyle? title(BuildContext context) => Theme.of(context).textTheme.titleLarge;
+  static TextStyle? subtitle(BuildContext context) => Theme.of(context).textTheme.titleMedium;
+  static TextStyle? explanation(BuildContext context) => const TextStyle(fontStyle: FontStyle.italic);
+}
+
 class GamePage extends StatelessWidget {
   final String title;
   final Image? icon;
@@ -13,13 +20,16 @@ class GamePage extends StatelessWidget {
   const GamePage(this.title, this.story, this.buttons, {super.key, this.icon});
 
   List<Widget> createButtons(){
-    //ERROR if more than 4 buttons
+    //TODO: better way
     switch (buttons.length) {
       case 0: return [];
       case 1: return [buttons[0]];
       case 2: return [Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2))];
       case 3:
       case 4:
+      case 5:
+      case 6:
+      case 7:
         return[
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(0,2),),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: buttons.sublist(2,buttons.length),),
